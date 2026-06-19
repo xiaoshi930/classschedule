@@ -1,0 +1,10 @@
+{
+  "domain": "classschedule",
+  "name": "课程表",
+  "codeowners": ["@zhangqiang"],
+  "config_flow": true,
+  "documentation": "https://github.com/xiaoshi930/classschedule",
+  "iot_class": "local_polling",
+  "version": "1.0",
+  "requirements": []
+}
