@@ -97,7 +97,7 @@ def _build_schedule_schema(periods: int, active_days: list, existing: dict = Non
             if existing:
                 sched = existing.get(CONF_SCHEDULE, {})
                 default_val = sched.get(key, "")
-            # 使用 vol.Optional 允许科目为空（空白）
+            # 使用 vol.Optional 允许科目留空
             fields[vol.Optional(key, default=default_val)] = cv.string
     return vol.Schema(fields)
 

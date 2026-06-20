@@ -46,6 +46,16 @@ zh = {
                 },
                 "description": "修改课程表基本信息（修改节数将重新设置时间表）",
                 "title": "编辑课程表"
+            },
+            "time_slots": {
+                "data": {},
+                "description": "修改每节课的上课和下课时间（格式 HH:MM，如 08:00）",
+                "title": "修改上课时间"
+            },
+            "schedule": {
+                "data": {},
+                "description": "修改每天每节课的科目（可自由输入任意科目名称）",
+                "title": "修改课程安排"
             }
         }
     },
@@ -69,6 +79,16 @@ weekdays_cn = {"monday": "周一", "tuesday": "周二", "wednesday": "周三", "
 for day_key, day_cn in weekdays_cn.items():
     for i in range(1, 16):
         zh["config"]["step"]["schedule"]["data"][f"{day_key}_period_{i}"] = f"{day_cn} 第{i}节"
+
+# 动态字段：options 的时间段
+for i in range(1, 16):
+    zh["options"]["step"]["time_slots"]["data"][f"period_{i}_start"] = f"第{i}节 上课时间"
+    zh["options"]["step"]["time_slots"]["data"][f"period_{i}_end"] = f"第{i}节 下课时间"
+
+# 动态字段：options 的课程安排
+for day_key, day_cn in weekdays_cn.items():
+    for i in range(1, 16):
+        zh["options"]["step"]["schedule"]["data"][f"{day_key}_period_{i}"] = f"{day_cn} 第{i}节"
 
 with open(r"Z:\custom_components\Classschedule\translations\zh-Hans.json", "w", encoding="utf-8") as f:
     json.dump(zh, f, ensure_ascii=False, indent=2)
@@ -119,6 +139,16 @@ en = {
                 },
                 "description": "Modify basic info (changing period count will reset time slots)",
                 "title": "Edit Class Schedule"
+            },
+            "time_slots": {
+                "data": {},
+                "description": "Modify start and end time for each period (format HH:MM, e.g. 08:00)",
+                "title": "Edit Time Slots"
+            },
+            "schedule": {
+                "data": {},
+                "description": "Modify subject for each period on each day (free text input)",
+                "title": "Edit Schedule"
             }
         }
     },
@@ -140,6 +170,16 @@ for i in range(1, 16):
 for day_key, day_en in weekdays_en.items():
     for i in range(1, 16):
         en["config"]["step"]["schedule"]["data"][f"{day_key}_period_{i}"] = f"{day_en} Period {i}"
+
+# 动态字段：options 的时间段 (英文)
+for i in range(1, 16):
+    en["options"]["step"]["time_slots"]["data"][f"period_{i}_start"] = f"Period {i} Start"
+    en["options"]["step"]["time_slots"]["data"][f"period_{i}_end"] = f"Period {i} End"
+
+# 动态字段：options 的课程安排 (英文)
+for day_key, day_en in weekdays_en.items():
+    for i in range(1, 16):
+        en["options"]["step"]["schedule"]["data"][f"{day_key}_period_{i}"] = f"{day_en} Period {i}"
 
 with open(r"Z:\custom_components\Classschedule\translations\en.json", "w", encoding="utf-8") as f:
     json.dump(en, f, ensure_ascii=False, indent=2)
