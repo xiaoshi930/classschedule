@@ -97,8 +97,8 @@ def _build_schedule_schema(periods: int, active_days: list, existing: dict = Non
             if existing:
                 sched = existing.get(CONF_SCHEDULE, {})
                 default_val = sched.get(key, "")
-            # 使用 cv.string 允许自由输入任意科目
-            fields[vol.Required(key, default=default_val)] = cv.string
+            # 使用 vol.Optional 允许科目为空（空白）
+            fields[vol.Optional(key, default=default_val)] = cv.string
     return vol.Schema(fields)
 
 
@@ -207,7 +207,7 @@ class ClassScheduleOptionsFlowHandler(config_entries.OptionsFlow):
     """选项修改流程"""
 
     def __init__(self, config_entry):
-        self.config_entry = config_entry
+        self._config_entry = config_entry
         self._data = dict(config_entry.data)
 
     async def async_step_init(self, user_input=None):
