@@ -5,7 +5,9 @@
         "data": {
           "class_name": "班级名称",
           "student_name": "学生姓名",
-          "periods_per_day": "每天几节课"
+          "periods_per_day": "每天几节课",
+          "saturday_class": "周六有课",
+          "sunday_class": "周日有课"
         },
         "description": "添加课程表 - 填写基本信息后点击下一步",
         "title": "添加课程表"
@@ -122,7 +124,37 @@
           "friday_period_12": "周五 第12节",
           "friday_period_13": "周五 第13节",
           "friday_period_14": "周五 第14节",
-          "friday_period_15": "周五 第15节"
+          "friday_period_15": "周五 第15节",
+          "saturday_period_1": "周六 第1节",
+          "saturday_period_2": "周六 第2节",
+          "saturday_period_3": "周六 第3节",
+          "saturday_period_4": "周六 第4节",
+          "saturday_period_5": "周六 第5节",
+          "saturday_period_6": "周六 第6节",
+          "saturday_period_7": "周六 第7节",
+          "saturday_period_8": "周六 第8节",
+          "saturday_period_9": "周六 第9节",
+          "saturday_period_10": "周六 第10节",
+          "saturday_period_11": "周六 第11节",
+          "saturday_period_12": "周六 第12节",
+          "saturday_period_13": "周六 第13节",
+          "saturday_period_14": "周六 第14节",
+          "saturday_period_15": "周六 第15节",
+          "sunday_period_1": "周日 第1节",
+          "sunday_period_2": "周日 第2节",
+          "sunday_period_3": "周日 第3节",
+          "sunday_period_4": "周日 第4节",
+          "sunday_period_5": "周日 第5节",
+          "sunday_period_6": "周日 第6节",
+          "sunday_period_7": "周日 第7节",
+          "sunday_period_8": "周日 第8节",
+          "sunday_period_9": "周日 第9节",
+          "sunday_period_10": "周日 第10节",
+          "sunday_period_11": "周日 第11节",
+          "sunday_period_12": "周日 第12节",
+          "sunday_period_13": "周日 第13节",
+          "sunday_period_14": "周日 第14节",
+          "sunday_period_15": "周日 第15节"
         },
         "description": "填写每天每节课的科目（可自由输入任意科目名称）",
         "title": "课程安排"
@@ -141,7 +173,9 @@
         "data": {
           "class_name": "班级名称",
           "student_name": "学生姓名",
-          "periods_per_day": "每天几节课"
+          "periods_per_day": "每天几节课",
+          "saturday_class": "周六有课",
+          "sunday_class": "周日有课"
         },
         "description": "修改课程表基本信息",
         "title": "编辑课程表"

@@ -9,7 +9,9 @@ zh = {
                 "data": {
                     "class_name": "班级名称",
                     "student_name": "学生姓名",
-                    "periods_per_day": "每天几节课"
+                    "periods_per_day": "每天几节课",
+                    "saturday_class": "周六有课",
+                    "sunday_class": "周日有课"
                 },
                 "description": "添加课程表 - 填写基本信息后点击下一步",
                 "title": "添加课程表"
@@ -38,7 +40,9 @@ zh = {
                 "data": {
                     "class_name": "班级名称",
                     "student_name": "学生姓名",
-                    "periods_per_day": "每天几节课"
+                    "periods_per_day": "每天几节课",
+                    "saturday_class": "周六有课",
+                    "sunday_class": "周日有课"
                 },
                 "description": "修改课程表基本信息（修改节数将重新设置时间表）",
                 "title": "编辑课程表"
@@ -60,8 +64,8 @@ for i in range(1, 16):
     zh["config"]["step"]["time_slots"]["data"][f"period_{i}_start"] = f"第{i}节 上课时间"
     zh["config"]["step"]["time_slots"]["data"][f"period_{i}_end"] = f"第{i}节 下课时间"
 
-# 动态字段：课程安排 (5天 x 15节)
-weekdays_cn = {"monday": "周一", "tuesday": "周二", "wednesday": "周三", "thursday": "周四", "friday": "周五"}
+# 动态字段：课程安排 (7天 x 15节)
+weekdays_cn = {"monday": "周一", "tuesday": "周二", "wednesday": "周三", "thursday": "周四", "friday": "周五", "saturday": "周六", "sunday": "周日"}
 for day_key, day_cn in weekdays_cn.items():
     for i in range(1, 16):
         zh["config"]["step"]["schedule"]["data"][f"{day_key}_period_{i}"] = f"{day_cn} 第{i}节"
@@ -78,7 +82,9 @@ en = {
                 "data": {
                     "class_name": "Class Name",
                     "student_name": "Student Name",
-                    "periods_per_day": "Periods Per Day"
+                    "periods_per_day": "Periods Per Day",
+                    "saturday_class": "Saturday Class",
+                    "sunday_class": "Sunday Class"
                 },
                 "description": "Add a class schedule - fill in basic info then click Next",
                 "title": "Add Class Schedule"
@@ -107,7 +113,9 @@ en = {
                 "data": {
                     "class_name": "Class Name",
                     "student_name": "Student Name",
-                    "periods_per_day": "Periods Per Day"
+                    "periods_per_day": "Periods Per Day",
+                    "saturday_class": "Saturday Class",
+                    "sunday_class": "Sunday Class"
                 },
                 "description": "Modify basic info (changing period count will reset time slots)",
                 "title": "Edit Class Schedule"
@@ -124,7 +132,7 @@ en = {
     }
 }
 
-weekdays_en = {"monday": "Mon", "tuesday": "Tue", "wednesday": "Wed", "thursday": "Thu", "friday": "Fri"}
+weekdays_en = {"monday": "Mon", "tuesday": "Tue", "wednesday": "Wed", "thursday": "Thu", "friday": "Fri", "saturday": "Sat", "sunday": "Sun"}
 for i in range(1, 16):
     en["config"]["step"]["time_slots"]["data"][f"period_{i}_start"] = f"Period {i} Start"
     en["config"]["step"]["time_slots"]["data"][f"period_{i}_end"] = f"Period {i} End"

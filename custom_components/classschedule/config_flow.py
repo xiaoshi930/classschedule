@@ -14,8 +14,12 @@ from .const import (
     CONF_PERIODS_PER_DAY,
     CONF_TIME_SLOTS,
     CONF_SCHEDULE,
-    WEEKDAYS,
+    CONF_SATURDAY_CLASS,
+    CONF_SUNDAY_CLASS,
     DEFAULT_PERIODS_PER_DAY,
+    DEFAULT_SATURDAY_CLASS,
+    DEFAULT_SUNDAY_CLASS,
+    get_active_weekdays,
 )
 
 _LOGGER = logging.getLogger(__name__)
@@ -83,16 +87,16 @@ def _build_time_slots_schema(periods: int, existing: dict = None) -> vol.Schema:
     return vol.Schema(fields)
 
 
-def _build_schedule_schema(periods: int, existing: dict = None) -> vol.Schema:
+def _build_schedule_schema(periods: int, active_days: list, existing: dict = None) -> vol.Schema:
     """构建课程安排 schema（自由文本输入，支持任意科目名称）"""
     fields = {}
-    for day in WEEKDAYS:
+    for day in active_days:
         for i in range(1, periods + 1):
             key = f"{day}_period_{i}"
-            default_val = "无课"
+            default_val = ""
             if existing:
                 sched = existing.get(CONF_SCHEDULE, {})
-                default_val = sched.get(key, "无课")
+                default_val = sched.get(key, "")
             # 使用 cv.string 允许自由输入任意科目
             fields[vol.Required(key, default=default_val)] = cv.string
     return vol.Schema(fields)
@@ -122,6 +126,8 @@ class ClassScheduleConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             vol.Required(CONF_PERIODS_PER_DAY, default=DEFAULT_PERIODS_PER_DAY): vol.All(
                 vol.Coerce(int), vol.Range(min=1, max=15)
             ),
+            vol.Required(CONF_SATURDAY_CLASS, default=DEFAULT_SATURDAY_CLASS): bool,
+            vol.Required(CONF_SUNDAY_CLASS, default=DEFAULT_SUNDAY_CLASS): bool,
         })
 
         return self.async_show_form(
@@ -168,6 +174,7 @@ class ClassScheduleConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         """第三步: 设置每天每节课的科目"""
         errors = {}
         periods = int(self._data.get(CONF_PERIODS_PER_DAY, DEFAULT_PERIODS_PER_DAY))
+        active_days = get_active_weekdays(self._data)
 
         if user_input is not None:
             self._data[CONF_SCHEDULE] = dict(user_input)
@@ -182,7 +189,7 @@ class ClassScheduleConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                 data=self._data,
             )
 
-        schema = _build_schedule_schema(periods, self._data)
+        schema = _build_schedule_schema(periods, active_days, self._data)
         return self.async_show_form(
             step_id="schedule",
             data_schema=schema,
@@ -230,6 +237,14 @@ class ClassScheduleOptionsFlowHandler(config_entries.OptionsFlow):
                 CONF_PERIODS_PER_DAY,
                 default=self.config_entry.data.get(CONF_PERIODS_PER_DAY, DEFAULT_PERIODS_PER_DAY),
             ): vol.All(vol.Coerce(int), vol.Range(min=1, max=15)),
+            vol.Required(
+                CONF_SATURDAY_CLASS,
+                default=self.config_entry.data.get(CONF_SATURDAY_CLASS, DEFAULT_SATURDAY_CLASS),
+            ): bool,
+            vol.Required(
+                CONF_SUNDAY_CLASS,
+                default=self.config_entry.data.get(CONF_SUNDAY_CLASS, DEFAULT_SUNDAY_CLASS),
+            ): bool,
         })
 
         return self.async_show_form(
@@ -267,6 +282,7 @@ class ClassScheduleOptionsFlowHandler(config_entries.OptionsFlow):
         """修改课程安排"""
         errors = {}
         periods = int(self._data.get(CONF_PERIODS_PER_DAY, DEFAULT_PERIODS_PER_DAY))
+        active_days = get_active_weekdays(self._data)
 
         if user_input is not None:
             self._data[CONF_SCHEDULE] = dict(user_input)
@@ -283,7 +299,7 @@ class ClassScheduleOptionsFlowHandler(config_entries.OptionsFlow):
 
         existing = {}
         existing[CONF_SCHEDULE] = self.config_entry.data.get(CONF_SCHEDULE, {})
-        schema = _build_schedule_schema(periods, existing)
+        schema = _build_schedule_schema(periods, active_days, existing)
         return self.async_show_form(
             step_id="schedule",
             data_schema=schema,

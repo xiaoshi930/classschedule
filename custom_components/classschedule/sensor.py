@@ -15,8 +15,8 @@ from .const import (
     CONF_PERIODS_PER_DAY,
     CONF_TIME_SLOTS,
     CONF_SCHEDULE,
-    WEEKDAYS,
     WEEKDAYS_CN,
+    get_active_weekdays,
 )
 
 
@@ -73,11 +73,12 @@ class ClassScheduleSensor(SensorEntity):
         student_name = self._config.get(CONF_STUDENT_NAME, "")
 
         full_schedule = {}
-        for day in WEEKDAYS:
+        active_days = get_active_weekdays(self._config)
+        for day in active_days:
             day_cn = WEEKDAYS_CN[day]
             day_classes = {}
             for i in range(1, periods + 1):
-                subject = schedule.get(f"{day}_period_{i}", "无课")
+                subject = schedule.get(f"{day}_period_{i}", "")
                 day_classes[str(i)] = {
                     "科目": subject,
                     "开始": time_slots.get(f"period_{i}_start", ""),

@@ -5,7 +5,9 @@
         "data": {
           "class_name": "Class Name",
           "student_name": "Student Name",
-          "periods_per_day": "Periods Per Day"
+          "periods_per_day": "Periods Per Day",
+          "saturday_class": "Saturday Class",
+          "sunday_class": "Sunday Class"
         },
         "description": "Add a class schedule - fill in basic info then click Next",
         "title": "Add Class Schedule"
@@ -122,7 +124,37 @@
           "friday_period_12": "Fri Period 12",
           "friday_period_13": "Fri Period 13",
           "friday_period_14": "Fri Period 14",
-          "friday_period_15": "Fri Period 15"
+          "friday_period_15": "Fri Period 15",
+          "saturday_period_1": "Sat Period 1",
+          "saturday_period_2": "Sat Period 2",
+          "saturday_period_3": "Sat Period 3",
+          "saturday_period_4": "Sat Period 4",
+          "saturday_period_5": "Sat Period 5",
+          "saturday_period_6": "Sat Period 6",
+          "saturday_period_7": "Sat Period 7",
+          "saturday_period_8": "Sat Period 8",
+          "saturday_period_9": "Sat Period 9",
+          "saturday_period_10": "Sat Period 10",
+          "saturday_period_11": "Sat Period 11",
+          "saturday_period_12": "Sat Period 12",
+          "saturday_period_13": "Sat Period 13",
+          "saturday_period_14": "Sat Period 14",
+          "saturday_period_15": "Sat Period 15",
+          "sunday_period_1": "Sun Period 1",
+          "sunday_period_2": "Sun Period 2",
+          "sunday_period_3": "Sun Period 3",
+          "sunday_period_4": "Sun Period 4",
+          "sunday_period_5": "Sun Period 5",
+          "sunday_period_6": "Sun Period 6",
+          "sunday_period_7": "Sun Period 7",
+          "sunday_period_8": "Sun Period 8",
+          "sunday_period_9": "Sun Period 9",
+          "sunday_period_10": "Sun Period 10",
+          "sunday_period_11": "Sun Period 11",
+          "sunday_period_12": "Sun Period 12",
+          "sunday_period_13": "Sun Period 13",
+          "sunday_period_14": "Sun Period 14",
+          "sunday_period_15": "Sun Period 15"
         },
         "description": "Enter subject for each period on each day (free text input)",
         "title": "Schedule Arrangement"
@@ -141,7 +173,9 @@
         "data": {
           "class_name": "Class Name",
           "student_name": "Student Name",
-          "periods_per_day": "Periods Per Day"
+          "periods_per_day": "Periods Per Day",
+          "saturday_class": "Saturday Class",
+          "sunday_class": "Sunday Class"
         },
         "description": "Modify basic info (changing period count will reset time slots)",
         "title": "Edit Class Schedule"
